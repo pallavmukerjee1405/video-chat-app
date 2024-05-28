@@ -56,14 +56,14 @@
   flex-direction: column;
 }
 
-.message>b{
+.message > b {
   color: #eeeeee;
   display: flex;
   align-items: center;
   text-transform: capitalize;
 }
 
-.message>b>i{
+.message > b > i {
   margin-right: 0.7rem;
   font-size: 1.5rem;
 }
@@ -98,6 +98,26 @@
   top: 17px;
   left: 28px;
   color: #fff;
+}
+
+#video_grid {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--main-dark);
+}
+
+video {
+  height: 300px;
+  border-radius: 1rem;
+  margin: 0.5rem;
+  width: 400px;
+  object-fit: cover;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
 }
 
 @media (max-width: 700px) {
