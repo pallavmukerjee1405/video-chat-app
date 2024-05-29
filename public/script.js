@@ -13,26 +13,31 @@ myVideo.muted=true;
 
 let myStream;
 
-navigator.mediaDevices.getUserMedia({
-    audio:true,
-    video:true
-})
-.then((stream)=>{
-    myStream=stream;
-    addVideoStream(myVideo,stream);
-});
+navigator.mediaDevices
+    .getUserMedia({
+        audio:true,
+        video:true
+    })
+    .then((stream)=>{
+        myStream=stream;
+        addVideoStream(myVideo,stream);
 
-socket.on("user-connected",(userId)=>{
-    connectToNewUser(userId,stream);
-});
-
-peer.on("call",(call)=>{
-    call.answer(stream);
-    const video=document.createElement("video");
-    call.on("stream",(userVideoStream)=>{
-        addVideoStream(video,userVideoStream)
+        socket.on("user-connected",(userId)=>{
+            connectToNewUser(userId,stream);
+        });
+        
+        peer.on("call",(call)=>{
+            call.answer(stream);
+            const video=document.createElement("video");
+            call.on("stream",(userVideoStream)=>{
+                addVideoStream(video,userVideoStream)
+            });
+        });
     });
-});
+
+    
+
+
 
 function connectToNewUser(userId,stream){
     const call=peer.call(userId,stream);
