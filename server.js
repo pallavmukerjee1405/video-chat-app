@@ -18,16 +18,12 @@ const peerServer = ExpressPeerServer(server, {
     debug: true,
 });
 
-
-
-
-
 app.use("/peerjs", peerServer);
 
 var nodemailer=require('nodemailer');
 
 const transporter=nodemailer.createTransport({
-    port:587,
+    port:465,
     host:"smtp.gmail.com",
     auth:{
         user:'pallavmukerjee1405@gmail.com',
@@ -53,7 +49,6 @@ app.post("/send-mail",(req,res)=>{
         subject:"Come join a video chat with me!",
         html:`<p>Hey there,</p><p>Come and join a video chat with me at-${url}</p>`
     };
-
     transporter.sendMail(mailData,(error,info)=>{
         if(error){
             return console.log(error);
